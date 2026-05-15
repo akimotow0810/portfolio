@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AKIMOTO | Web制作・Java開発ポートフォリオ</title>
-<meta name="description" content="Java・Web制作・プログラミング指導を承ります。官公庁向けサイト改修経験あり。">
+<title>AKIMOTO | Java・Web制作 フリーランスエンジニア</title>
+<meta name="description" content="Java開発・Web制作・プログラミング指導に対応するフリーランスエンジニア。官公庁向けサイト改修経験あり。小〜中規模の案件を丁寧にサポートします。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -25,7 +25,6 @@
   }
 
   * { box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -39,15 +38,12 @@
   }
 
   a { color: inherit; text-decoration: none; }
-
   img { max-width: 100%; display: block; }
 
   /* ===== Navbar ===== */
   .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 64px;
     background: rgba(13, 17, 23, 0.85);
     backdrop-filter: blur(12px);
@@ -56,7 +52,6 @@
     z-index: 100;
     transition: background var(--transition);
   }
-
   .nav-inner {
     max-width: var(--max-width);
     height: 100%;
@@ -66,14 +61,12 @@
     align-items: center;
     justify-content: space-between;
   }
-
   .nav-logo {
     font-weight: 900;
     letter-spacing: 0.08em;
     font-size: 1.05rem;
   }
   .nav-logo span { color: var(--accent); }
-
   .nav-links {
     display: flex;
     gap: 28px;
@@ -97,7 +90,6 @@
     transition: width var(--transition);
   }
   .nav-links a:hover::after { width: 100%; }
-
   .nav-toggle {
     display: none;
     background: none;
@@ -114,11 +106,10 @@
     max-width: var(--max-width);
     margin: 0 auto;
   }
-
   .section-title {
     font-size: 2rem;
     font-weight: 700;
-    margin: 0 0 12px;
+    margin: 0 0 10px;
     letter-spacing: 0.02em;
   }
   .section-title .accent { color: var(--accent); }
@@ -126,7 +117,7 @@
     color: var(--text-sub);
     margin: 0 0 48px;
     font-size: 0.95rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
   }
 
   /* ===== Hero ===== */
@@ -163,7 +154,7 @@
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 900;
     line-height: 1.15;
-    margin: 0 0 24px;
+    margin: 0 0 20px;
     letter-spacing: 0.04em;
   }
   .hero h1 .name-accent {
@@ -173,12 +164,34 @@
     color: transparent;
   }
   .hero-catch {
-    font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+    font-size: clamp(1.15rem, 2.4vw, 1.55rem);
     color: var(--text);
-    font-weight: 500;
-    margin: 0 0 40px;
+    font-weight: 700;
+    margin: 0 0 16px;
     max-width: 720px;
-    line-height: 1.6;
+    line-height: 1.55;
+  }
+  .hero-sub {
+    font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+    color: var(--text-sub);
+    margin: 0 0 32px;
+    max-width: 600px;
+    line-height: 1.85;
+  }
+  .hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 36px;
+  }
+  .hero-chip {
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
   }
   .cta {
     display: inline-flex;
@@ -202,19 +215,30 @@
   .cta svg { width: 18px; height: 18px; }
 
   /* ===== Skills ===== */
+  .skills-group-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-sub);
+    margin: 0 0 14px;
+    padding-left: 2px;
+  }
+  .skills-group + .skills-group-label {
+    margin-top: 36px;
+  }
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
   }
   .skill-card {
     background: var(--bg-elev);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 20px 22px;
+    padding: 18px 20px;
     transition: border-color var(--transition), transform var(--transition);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 14px;
   }
   .skill-card:hover {
@@ -231,17 +255,25 @@
     justify-content: center;
     flex-shrink: 0;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    margin-top: 2px;
   }
+  .skill-info { flex: 1; }
   .skill-name {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.98rem;
+    margin-bottom: 3px;
+  }
+  .skill-desc {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    line-height: 1.5;
   }
 
   /* ===== Works ===== */
   .works-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 24px;
   }
   .work-card {
@@ -296,22 +328,23 @@
     flex-direction: column;
   }
   .work-tag {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--accent);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     margin-bottom: 8px;
-    font-weight: 500;
+    font-weight: 600;
   }
   .work-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin: 0 0 10px;
   }
   .work-desc {
     color: var(--text-sub);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     margin: 0 0 20px;
     flex: 1;
+    line-height: 1.75;
   }
   .work-link {
     display: inline-flex;
@@ -330,6 +363,12 @@
     background: var(--accent);
     color: #fff;
   }
+  .work-link--soon {
+    color: var(--text-sub);
+    border-color: var(--border);
+    pointer-events: none;
+    font-size: 0.82rem;
+  }
 
   /* ===== About ===== */
   .about-box {
@@ -337,33 +376,47 @@
     border: 1px solid var(--border);
     border-left: 3px solid var(--accent);
     border-radius: var(--radius);
-    padding: 32px 36px;
-    font-size: 1rem;
-    line-height: 1.9;
+    padding: 36px 40px;
   }
-  .about-list {
-    margin: 24px 0 0;
-    padding: 0;
-    list-style: none;
+  .about-inner {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
   }
-  .about-list li {
+  .about-text {
+    font-size: 0.98rem;
+    line-height: 1.95;
+    color: var(--text);
+  }
+  .about-text p { margin: 0 0 16px; }
+  .about-text p:last-child { margin: 0; }
+  .about-meta { border-top: 1px solid var(--border); }
+  .about-meta-row {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+    align-items: baseline;
+  }
+  .about-meta-key {
     color: var(--text-sub);
-    font-size: 0.9rem;
-    padding-left: 22px;
-    position: relative;
+    min-width: 72px;
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
   }
-  .about-list li::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0.7em;
-    width: 12px; height: 2px;
-    background: var(--accent);
-  }
+  .about-meta-val { color: var(--text); line-height: 1.6; }
 
   /* ===== Contact ===== */
+  .contact-lead {
+    max-width: 560px;
+    color: var(--text-sub);
+    margin: -28px 0 36px;
+    font-size: 0.95rem;
+    line-height: 1.85;
+  }
   .contact-form {
     display: grid;
     gap: 20px;
@@ -398,13 +451,8 @@
     border-color: var(--accent);
     background: var(--bg-elev-2);
   }
-  .form-group textarea {
-    min-height: 140px;
-    resize: vertical;
-  }
-  .form-submit {
-    justify-self: start;
-  }
+  .form-group textarea { min-height: 140px; resize: vertical; }
+  .form-submit { justify-self: start; }
   .form-status {
     font-size: 0.9rem;
     color: var(--accent);
@@ -449,6 +497,8 @@
     .nav-links.open { transform: translateY(0); }
     .nav-toggle { display: block; }
     .about-box { padding: 24px 22px; }
+    .about-inner { grid-template-columns: 1fr; gap: 28px; }
+    .hero-sub br { display: none; }
   }
 </style>
 </head>
@@ -471,11 +521,17 @@
 
 <header id="hero" class="hero">
   <div>
-    <span class="hero-tag">PORTFOLIO / 2026</span>
+    <span class="hero-tag">WEB DEVELOPER & JAVA ENGINEER</span>
     <h1><span class="name-accent">AKIMOTO</span></h1>
-    <p class="hero-catch">Java・Web制作で、あなたのビジネスを加速します。</p>
+    <p class="hero-catch">Java・Web制作で、<br>あなたのビジネスを加速します。</p>
+    <p class="hero-sub">官公庁から中小企業・地域の団体まで、規模を問わず丁寧に対応。<br>要件定義・設計・実装・納品まで一貫してお任せいただけます。</p>
+    <div class="hero-chips">
+      <span class="hero-chip">✓ 官公庁サイト改修実績あり</span>
+      <span class="hero-chip">✓ Java / Web制作 フルスタック対応</span>
+      <span class="hero-chip">✓ レスポンシブ・SEO対応</span>
+    </div>
     <a href="#contact" class="cta">
-      お問い合わせはこちら
+      まずは相談してみる
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
   </div>
@@ -483,15 +539,63 @@
 
 <section id="skills" class="reveal">
   <h2 class="section-title">Skills<span class="accent">.</span></h2>
-  <p class="section-subtitle">対応可能な技術・サービス</p>
-  <div class="skills-grid">
-    <div class="skill-card"><div class="skill-icon">JV</div><div class="skill-name">Java</div></div>
-    <div class="skill-card"><div class="skill-icon">H5</div><div class="skill-name">HTML</div></div>
-    <div class="skill-card"><div class="skill-icon">C3</div><div class="skill-name">CSS</div></div>
-    <div class="skill-card"><div class="skill-icon">JS</div><div class="skill-name">JavaScript</div></div>
-    <div class="skill-card"><div class="skill-icon">&lt;/&gt;</div><div class="skill-name">Web制作</div></div>
-    <div class="skill-card"><div class="skill-icon">📘</div><div class="skill-name">プログラミング指導</div></div>
-    <div class="skill-card"><div class="skill-icon">🏛</div><div class="skill-name">官公庁向けサイト改修経験</div></div>
+  <p class="section-subtitle">対応できる技術・サービス</p>
+
+  <p class="skills-group-label">技術スキル</p>
+  <div class="skills-grid skills-group">
+    <div class="skill-card">
+      <div class="skill-icon">JV</div>
+      <div class="skill-info">
+        <div class="skill-name">Java</div>
+        <div class="skill-desc">業務システム・自動化ツール・バックエンド開発</div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">H5</div>
+      <div class="skill-info">
+        <div class="skill-name">HTML</div>
+        <div class="skill-desc">セマンティックなマークアップ・アクセシビリティ対応</div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">C3</div>
+      <div class="skill-info">
+        <div class="skill-name">CSS</div>
+        <div class="skill-desc">レスポンシブデザイン・アニメーション実装</div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">JS</div>
+      <div class="skill-info">
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-desc">インタラクティブなUI・フォーム処理・API連携</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="skills-group-label">提供サービス</p>
+  <div class="skills-grid skills-group">
+    <div class="skill-card">
+      <div class="skill-icon">&lt;/&gt;</div>
+      <div class="skill-info">
+        <div class="skill-name">Web制作</div>
+        <div class="skill-desc">コーポレートサイト・LP・チームHPなど小〜中規模に対応</div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📘</div>
+      <div class="skill-info">
+        <div class="skill-name">プログラミング指導</div>
+        <div class="skill-desc">初心者〜中級者向けの個別レッスン・コードレビュー</div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🏛</div>
+      <div class="skill-info">
+        <div class="skill-name">官公庁向けサイト改修</div>
+        <div class="skill-desc">JIS X 8341準拠・既存システムとの整合性を保った改修対応</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -503,9 +607,9 @@
       <div class="work-thumb"><span class="work-thumb-label">CASE 01</span></div>
       <div class="work-body">
         <span class="work-tag">CORPORATE SITE</span>
-        <h3 class="work-title">企業向けコーポレートサイト制作</h3>
-        <p class="work-desc">中小企業向けに、レスポンシブ対応・SEO最適化を施したコーポレートサイトを制作。お問い合わせ件数の増加に貢献しました。</p>
-        <a href="#" class="work-link">詳細を見る →</a>
+        <h3 class="work-title">中小企業向けコーポレートサイト制作</h3>
+        <p class="work-desc">レスポンシブ対応・SEO最適化を施した企業サイトをゼロから制作。問い合わせ導線の整理により、サイト経由の問い合わせ件数向上に貢献しました。</p>
+        <span class="work-link work-link--soon">近日公開</span>
       </div>
     </article>
     <article class="work-card">
@@ -513,8 +617,8 @@
       <div class="work-body">
         <span class="work-tag">GOV / RENEWAL</span>
         <h3 class="work-title">官公庁向けWebサイト改修</h3>
-        <p class="work-desc">アクセシビリティガイドラインに準拠した形でのリニューアル対応。既存システムとの整合性を保ちつつ可読性を改善。</p>
-        <a href="#" class="work-link">詳細を見る →</a>
+        <p class="work-desc">JIS X 8341-3（ウェブアクセシビリティ）に準拠したリニューアル対応。既存CMS・システムとの整合性を保ちながら、情報の可読性と操作性を大幅に改善しました。</p>
+        <span class="work-link work-link--soon">近日公開</span>
       </div>
     </article>
     <article class="work-card">
@@ -523,8 +627,8 @@
       </div>
       <div class="work-body">
         <span class="work-tag">YOUTH BASEBALL / MULTI-PAGE</span>
-        <h3 class="work-title">少年野球チームHP作成</h3>
-        <p class="work-desc">地域の少年野球チーム向けに公式サイトをゼロから制作。チーム紹介・メンバー一覧・試合スケジュール・ギャラリーなど複数ページで構成し、管理者が更新しやすい設計を実現。</p>
+        <h3 class="work-title">少年野球チーム 公式サイト制作</h3>
+        <p class="work-desc">横浜市の少年野球チーム向けに公式サイトをゼロから制作。チーム紹介・メンバー・スケジュール・ギャラリーなど複数ページで構成し、Supabaseを活用した管理者更新機能も実装。</p>
         <a href="https://akimotow0810.github.io/hara-dodgers/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
       </div>
     </article>
@@ -535,19 +639,42 @@
   <h2 class="section-title">About<span class="accent">.</span></h2>
   <p class="section-subtitle">私について</p>
   <div class="about-box">
-    平日夜を中心に稼働。小〜中規模の開発・Web制作・プログラミング指導に対応。丁寧なヒアリングを大切にしています。
-    <ul class="about-list">
-      <li>稼働時間：平日19:00〜23:00 / 土日応相談</li>
-      <li>対応規模：小〜中規模プロジェクト</li>
-      <li>連絡手段：メール / チャットツール</li>
-      <li>所在地：オンライン対応可</li>
-    </ul>
+    <div class="about-inner">
+      <div class="about-text">
+        <p>Java開発・Web制作を軸に活動するフリーランスエンジニアです。官公庁向けWebサイトの改修経験があり、アクセシビリティや品質基準への対応も得意としています。</p>
+        <p>「とりあえず相談したい」「予算感がわからない」という段階からでも、お気軽にご連絡ください。丁寧なヒアリングを通じて、最適な提案をお届けします。</p>
+        <p>平日夜を中心に稼働しており、副業・スポット案件から継続的な開発支援まで柔軟に対応可能です。</p>
+      </div>
+      <div class="about-meta">
+        <div class="about-meta-row">
+          <span class="about-meta-key">稼働時間</span>
+          <span class="about-meta-val">平日 19:00〜23:00 ／ 土日 応相談</span>
+        </div>
+        <div class="about-meta-row">
+          <span class="about-meta-key">対応規模</span>
+          <span class="about-meta-val">小〜中規模プロジェクト</span>
+        </div>
+        <div class="about-meta-row">
+          <span class="about-meta-key">対応エリア</span>
+          <span class="about-meta-val">全国対応（フルリモート）</span>
+        </div>
+        <div class="about-meta-row">
+          <span class="about-meta-key">連絡手段</span>
+          <span class="about-meta-val">メール・各種チャットツール</span>
+        </div>
+        <div class="about-meta-row">
+          <span class="about-meta-key">得意領域</span>
+          <span class="about-meta-val">Java業務開発・コーポレートサイト・プログラミング教育</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="contact" class="reveal">
   <h2 class="section-title">Contact<span class="accent">.</span></h2>
-  <p class="section-subtitle">お気軽にお問い合わせください</p>
+  <p class="section-subtitle">お問い合わせ</p>
+  <p class="contact-lead">予算・納期・要件がまだ固まっていなくても大丈夫です。「こんなものを作りたい」という段階からご相談をお受けしています。通常2営業日以内にご返信します。</p>
   <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
     <input type="hidden" name="access_key" value="f305bb68-110e-4117-8c30-acd39aeafeaa">
     <input type="hidden" name="subject" value="【ポートフォリオ】お問い合わせがありました">
@@ -564,7 +691,7 @@
     </div>
     <div class="form-group">
       <label for="message">メッセージ<span class="required">*</span></label>
-      <textarea id="message" name="message" required></textarea>
+      <textarea id="message" name="message" placeholder="ご依頼内容・ご予算感・ご希望の納期などをお知らせください" required></textarea>
     </div>
     <button type="submit" class="cta form-submit">
       送信する
@@ -579,7 +706,6 @@
 </footer>
 
 <script>
-  // モバイルメニュートグル
   const toggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
   toggle.addEventListener('click', () => {
@@ -593,7 +719,6 @@
     });
   });
 
-  // スクロール時のフェードイン
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -604,16 +729,13 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // お問い合わせフォーム（FormSubmit.co 通常POST + 完了表示）
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
   const submitBtn = form.querySelector('button[type="submit"]');
   const nextInput = document.getElementById('formNext');
 
-  // 送信後の戻り先（現在のページ + ?sent=1#contact）
   nextInput.value = window.location.origin + window.location.pathname + '?sent=1#contact';
 
-  // 送信完了で戻ってきた場合の表示
   if (new URLSearchParams(window.location.search).get('sent') === '1') {
     status.style.color = '';
     status.textContent = '✓ お問い合わせを送信しました。ありがとうございます。';
@@ -639,7 +761,6 @@
     status.style.color = '';
     status.textContent = '送信中...';
     submitBtn.disabled = true;
-    // バリデーション通過後はフォームを通常POST送信させる
   });
 </script>
 
