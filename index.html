@@ -539,12 +539,12 @@
 <section id="contact" class="reveal">
   <h2 class="section-title">Contact<span class="accent">.</span></h2>
   <p class="section-subtitle">お気軽にお問い合わせください</p>
-  <form class="contact-form" id="contactForm" action="https://formsubmit.co/akimotow0810@gmail.com" method="POST" novalidate>
-    <input type="hidden" name="_subject" value="【ポートフォリオ】お問い合わせがありました">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_captcha" value="false">
+  <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+    <input type="hidden" name="access_key" value="f305bb68-110e-4117-8c30-acd39aeafeaa">
+    <input type="hidden" name="subject" value="【ポートフォリオ】お問い合わせがありました">
+    <input type="hidden" name="from_name" value="AKIMOTO Portfolio">
     <input type="hidden" name="_next" id="formNext" value="">
-    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
     <div class="form-group">
       <label for="name">お名前<span class="required">*</span></label>
       <input type="text" id="name" name="name" required autocomplete="name">
