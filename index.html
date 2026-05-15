@@ -793,7 +793,7 @@
     <input type="hidden" name="access_key" value="f305bb68-110e-4117-8c30-acd39aeafeaa">
     <input type="hidden" name="subject" value="【ポートフォリオ】お問い合わせがありました">
     <input type="hidden" name="from_name" value="AKIMOTO Portfolio">
-    <input type="hidden" name="_next" id="formNext" value="">
+    <input type="hidden" name="_next" value="https://akimotow0810.github.io/portfolio/?sent=1#contact">
     <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
     <div class="form-group">
       <label for="name">お名前<span class="required">*</span></label>
@@ -846,10 +846,6 @@
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
   const submitBtn = form.querySelector('button[type="submit"]');
-  const nextInput = document.getElementById('formNext');
-
-  nextInput.value = window.location.origin + window.location.pathname + '?sent=1#contact';
-
   if (new URLSearchParams(window.location.search).get('sent') === '1') {
     status.style.color = '';
     status.textContent = '✓ お問い合わせを送信しました。ありがとうございます。';
