@@ -539,7 +539,11 @@
 <section id="contact" class="reveal">
   <h2 class="section-title">Contact<span class="accent">.</span></h2>
   <p class="section-subtitle">お気軽にお問い合わせください</p>
-  <form class="contact-form" id="contactForm" novalidate>
+  <form class="contact-form" id="contactForm" action="https://formsubmit.co/akimotow0810@gmail.com" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="【ポートフォリオ】お問い合わせがありました">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
     <div class="form-group">
       <label for="name">お名前<span class="required">*</span></label>
       <input type="text" id="name" name="name" required autocomplete="name">
@@ -590,10 +594,13 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // お問い合わせフォーム（送信ダミー）
+  // お問い合わせフォーム（FormSubmit.co AJAX 経由）
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
-  form.addEventListener('submit', (e) => {
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/akimotow0810@gmail.com';
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = form.name.value.trim();
     const email = form.email.value.trim();
@@ -608,12 +615,30 @@
       status.style.color = '#f87171';
       return;
     }
+
     status.style.color = '';
     status.textContent = '送信中...';
-    setTimeout(() => {
-      status.textContent = '✓ お問い合わせを受け付けました。ありがとうございます。';
-      form.reset();
-    }, 700);
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success !== 'false') {
+        status.textContent = '✓ お問い合わせを送信しました。ありがとうございます。';
+        form.reset();
+      } else {
+        throw new Error(data.message || '送信に失敗しました。');
+      }
+    } catch (err) {
+      status.style.color = '#f87171';
+      status.textContent = '※ 送信に失敗しました。時間をおいて再度お試しください。';
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 </script>
 
