@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKIMOTO | Web制作・Java開発ポートフォリオ</title>
+<meta name="description" content="Java・Web制作・プログラミング指導を承ります。官公庁向けサイト改修経験あり。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-elev: #161b22;
+    --bg-elev-2: #1c2230;
+    --border: #2a313c;
+    --text: #e6edf3;
+    --text-sub: #9aa4b2;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-soft: rgba(59, 130, 246, 0.12);
+    --max-width: 1100px;
+    --radius: 8px;
+    --transition: 0.25s ease;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: 'Noto Sans JP', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 400;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { max-width: 100%; display: block; }
+
+  /* ===== Navbar ===== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    transition: background var(--transition);
+  }
+
+  .nav-inner {
+    max-width: var(--max-width);
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-size: 1.05rem;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    font-size: 0.92rem;
+    color: var(--text-sub);
+    transition: color var(--transition);
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width var(--transition);
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    padding: 8px;
+  }
+  .nav-toggle svg { width: 24px; height: 24px; }
+
+  /* ===== Sections ===== */
+  section {
+    padding: 96px 24px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+    letter-spacing: 0.02em;
+  }
+  .section-title .accent { color: var(--accent); }
+  .section-subtitle {
+    color: var(--text-sub);
+    margin: 0 0 48px;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 96px 24px 64px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.82rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    margin-bottom: 24px;
+    letter-spacing: 0.08em;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin: 0 0 24px;
+    letter-spacing: 0.04em;
+  }
+  .hero h1 .name-accent {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-catch {
+    font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+    color: var(--text);
+    font-weight: 500;
+    margin: 0 0 40px;
+    max-width: 720px;
+    line-height: 1.6;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+    font-family: inherit;
+  }
+  .cta:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+  }
+  .cta svg { width: 18px; height: 18px; }
+
+  /* ===== Skills ===== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .skill-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    transition: border-color var(--transition), transform var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+  .skill-icon {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .skill-name {
+    font-weight: 500;
+    font-size: 0.98rem;
+  }
+
+  /* ===== Works ===== */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .work-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition), border-color var(--transition);
+  }
+  .work-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+  .work-thumb {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #1c2230 0%, #2a313c 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .work-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(59,130,246,0.25) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(96,165,250,0.15) 0%, transparent 50%);
+  }
+  .work-thumb-label {
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    color: var(--text-sub);
+  }
+  .work-body {
+    padding: 22px 24px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .work-tag {
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .work-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+  .work-desc {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+    margin: 0 0 20px;
+    flex: 1;
+  }
+  .work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-size: 0.88rem;
+    font-weight: 500;
+    align-self: flex-start;
+    padding: 8px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    transition: background var(--transition), color var(--transition);
+  }
+  .work-link:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ===== About ===== */
+  .about-box {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .about-list {
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .about-list li {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+    padding-left: 22px;
+    position: relative;
+  }
+  .about-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.7em;
+    width: 12px; height: 2px;
+    background: var(--accent);
+  }
+
+  /* ===== Contact ===== */
+  .contact-form {
+    display: grid;
+    gap: 20px;
+    max-width: 640px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+    color: var(--text-sub);
+    font-weight: 500;
+  }
+  .form-group label .required {
+    color: var(--accent);
+    margin-left: 4px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--bg-elev-2);
+  }
+  .form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+  }
+  .form-submit {
+    justify-self: start;
+  }
+  .form-status {
+    font-size: 0.9rem;
+    color: var(--accent);
+    min-height: 1.2em;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    color: var(--text-sub);
+    font-size: 0.85rem;
+  }
+
+  /* ===== Fade-in ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    section { padding: 72px 20px; }
+    .hero { padding: 96px 20px 48px; }
+    .nav-links {
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--bg-elev);
+      padding: 20px 24px;
+      gap: 18px;
+      border-bottom: 1px solid var(--border);
+      transform: translateY(-120%);
+      transition: transform var(--transition);
+    }
+    .nav-links.open { transform: translateY(0); }
+    .nav-toggle { display: block; }
+    .about-box { padding: 24px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">AKIMOTO<span>.</span></a>
+    <button class="nav-toggle" aria-label="メニュー" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header id="hero" class="hero">
+  <div>
+    <span class="hero-tag">PORTFOLIO / 2026</span>
+    <h1><span class="name-accent">AKIMOTO</span></h1>
+    <p class="hero-catch">Java・Web制作で、あなたのビジネスを加速します。</p>
+    <a href="#contact" class="cta">
+      お問い合わせはこちら
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+<section id="skills" class="reveal">
+  <h2 class="section-title">Skills<span class="accent">.</span></h2>
+  <p class="section-subtitle">対応可能な技術・サービス</p>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-icon">JV</div><div class="skill-name">Java</div></div>
+    <div class="skill-card"><div class="skill-icon">H5</div><div class="skill-name">HTML</div></div>
+    <div class="skill-card"><div class="skill-icon">C3</div><div class="skill-name">CSS</div></div>
+    <div class="skill-card"><div class="skill-icon">JS</div><div class="skill-name">JavaScript</div></div>
+    <div class="skill-card"><div class="skill-icon">&lt;/&gt;</div><div class="skill-name">Web制作</div></div>
+    <div class="skill-card"><div class="skill-icon">📘</div><div class="skill-name">プログラミング指導</div></div>
+    <div class="skill-card"><div class="skill-icon">🏛</div><div class="skill-name">官公庁向けサイト改修経験</div></div>
+  </div>
+</section>
+
+<section id="works" class="reveal">
+  <h2 class="section-title">Works<span class="accent">.</span></h2>
+  <p class="section-subtitle">これまでの制作実績</p>
+  <div class="works-grid">
+    <article class="work-card">
+      <div class="work-thumb"><span class="work-thumb-label">CASE 01</span></div>
+      <div class="work-body">
+        <span class="work-tag">CORPORATE SITE</span>
+        <h3 class="work-title">企業向けコーポレートサイト制作</h3>
+        <p class="work-desc">中小企業向けに、レスポンシブ対応・SEO最適化を施したコーポレートサイトを制作。お問い合わせ件数の増加に貢献しました。</p>
+        <a href="#" class="work-link">詳細を見る →</a>
+      </div>
+    </article>
+    <article class="work-card">
+      <div class="work-thumb"><span class="work-thumb-label">CASE 02</span></div>
+      <div class="work-body">
+        <span class="work-tag">GOV / RENEWAL</span>
+        <h3 class="work-title">官公庁向けWebサイト改修</h3>
+        <p class="work-desc">アクセシビリティガイドラインに準拠した形でのリニューアル対応。既存システムとの整合性を保ちつつ可読性を改善。</p>
+        <a href="#" class="work-link">詳細を見る →</a>
+      </div>
+    </article>
+    <article class="work-card">
+      <div class="work-thumb"><span class="work-thumb-label">CASE 03</span></div>
+      <div class="work-body">
+        <span class="work-tag">JAVA APPLICATION</span>
+        <h3 class="work-title">業務効率化Javaアプリケーション</h3>
+        <p class="work-desc">業務フローを分析し、手作業で行っていた集計処理をJavaで自動化。月間数十時間の工数削減を実現しました。</p>
+        <a href="#" class="work-link">詳細を見る →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="about" class="reveal">
+  <h2 class="section-title">About<span class="accent">.</span></h2>
+  <p class="section-subtitle">私について</p>
+  <div class="about-box">
+    平日夜を中心に稼働。小〜中規模の開発・Web制作・プログラミング指導に対応。丁寧なヒアリングを大切にしています。
+    <ul class="about-list">
+      <li>稼働時間：平日19:00〜23:00 / 土日応相談</li>
+      <li>対応規模：小〜中規模プロジェクト</li>
+      <li>連絡手段：メール / チャットツール</li>
+      <li>所在地：オンライン対応可</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <h2 class="section-title">Contact<span class="accent">.</span></h2>
+  <p class="section-subtitle">お気軽にお問い合わせください</p>
+  <form class="contact-form" id="contactForm" novalidate>
+    <div class="form-group">
+      <label for="name">お名前<span class="required">*</span></label>
+      <input type="text" id="name" name="name" required autocomplete="name">
+    </div>
+    <div class="form-group">
+      <label for="email">メールアドレス<span class="required">*</span></label>
+      <input type="email" id="email" name="email" required autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label for="message">メッセージ<span class="required">*</span></label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+    <button type="submit" class="cta form-submit">
+      送信する
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<footer>
+  © 2026 AKIMOTO. All Rights Reserved.
+</footer>
+
+<script>
+  // モバイルメニュートグル
+  const toggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  toggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // スクロール時のフェードイン
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // お問い合わせフォーム（送信ダミー）
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    if (!name || !email || !message) {
+      status.textContent = '※ すべての項目を入力してください。';
+      status.style.color = '#f87171';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      status.textContent = '※ 正しいメールアドレスを入力してください。';
+      status.style.color = '#f87171';
+      return;
+    }
+    status.style.color = '';
+    status.textContent = '送信中...';
+    setTimeout(() => {
+      status.textContent = '✓ お問い合わせを受け付けました。ありがとうございます。';
+      form.reset();
+    }, 700);
+  });
+</script>
+
+</body>
+</html>
