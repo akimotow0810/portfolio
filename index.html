@@ -543,6 +543,7 @@
     <input type="hidden" name="_subject" value="【ポートフォリオ】お問い合わせがありました">
     <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" id="formNext" value="">
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
     <div class="form-group">
       <label for="name">お名前<span class="required">*</span></label>
@@ -594,51 +595,42 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // お問い合わせフォーム（FormSubmit.co AJAX 経由）
+  // お問い合わせフォーム（FormSubmit.co 通常POST + 完了表示）
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
   const submitBtn = form.querySelector('button[type="submit"]');
-  const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/akimotow0810@gmail.com';
+  const nextInput = document.getElementById('formNext');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  // 送信後の戻り先（現在のページ + ?sent=1#contact）
+  nextInput.value = window.location.origin + window.location.pathname + '?sent=1#contact';
+
+  // 送信完了で戻ってきた場合の表示
+  if (new URLSearchParams(window.location.search).get('sent') === '1') {
+    status.style.color = '';
+    status.textContent = '✓ お問い合わせを送信しました。ありがとうございます。';
+    history.replaceState({}, '', window.location.pathname + window.location.hash);
+  }
+
+  form.addEventListener('submit', (e) => {
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     const message = form.message.value.trim();
     if (!name || !email || !message) {
+      e.preventDefault();
       status.textContent = '※ すべての項目を入力してください。';
       status.style.color = '#f87171';
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      e.preventDefault();
       status.textContent = '※ 正しいメールアドレスを入力してください。';
       status.style.color = '#f87171';
       return;
     }
-
     status.style.color = '';
     status.textContent = '送信中...';
     submitBtn.disabled = true;
-
-    try {
-      const res = await fetch(FORMSUBMIT_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(new FormData(form)))
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && data.success !== 'false') {
-        status.textContent = '✓ お問い合わせを送信しました。ありがとうございます。';
-        form.reset();
-      } else {
-        throw new Error(data.message || '送信に失敗しました。');
-      }
-    } catch (err) {
-      status.style.color = '#f87171';
-      status.textContent = '※ 送信に失敗しました。時間をおいて再度お試しください。';
-    } finally {
-      submitBtn.disabled = false;
-    }
+    // バリデーション通過後はフォームを通常POST送信させる
   });
 </script>
 
