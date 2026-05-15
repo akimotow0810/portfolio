@@ -270,6 +270,70 @@
     line-height: 1.5;
   }
 
+  /* ===== Certifications ===== */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .cert-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .cert-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+  .cert-badge {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 900;
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+    text-align: center;
+    line-height: 1.3;
+    margin-top: 1px;
+  }
+  .cert-badge--gold {
+    background: rgba(234, 179, 8, 0.12);
+    color: #ca8a04;
+  }
+  .cert-badge--aws {
+    background: rgba(249, 115, 22, 0.12);
+    color: #ea580c;
+  }
+  .cert-badge--ai {
+    background: rgba(168, 85, 247, 0.12);
+    color: #9333ea;
+  }
+  .cert-badge--strat {
+    background: rgba(20, 184, 166, 0.12);
+    color: #0d9488;
+  }
+  .cert-info { flex: 1; }
+  .cert-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+  .cert-org {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+  }
+
   /* ===== Works ===== */
   .works-grid {
     display: grid;
@@ -512,6 +576,7 @@
     </button>
     <ul class="nav-links">
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certs</a></li>
       <li><a href="#works">Works</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -594,6 +659,55 @@
       <div class="skill-info">
         <div class="skill-name">官公庁向けサイト改修</div>
         <div class="skill-desc">JIS X 8341準拠・既存システムとの整合性を保った改修対応</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certs" class="reveal">
+  <h2 class="section-title">Certifications<span class="accent">.</span></h2>
+  <p class="section-subtitle">保有資格・認定</p>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-badge cert-badge--strat">IT<br>ST</div>
+      <div class="cert-info">
+        <div class="cert-name">ITストラテジスト</div>
+        <div class="cert-org">IPA 情報処理推進機構</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge">AP</div>
+      <div class="cert-info">
+        <div class="cert-name">応用情報技術者</div>
+        <div class="cert-org">IPA 情報処理推進機構</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge cert-badge--gold">Gold</div>
+      <div class="cert-info">
+        <div class="cert-name">Oracle Certified Java Programmer, Gold</div>
+        <div class="cert-org">Oracle</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge">Slvr</div>
+      <div class="cert-info">
+        <div class="cert-name">Oracle Certified Java Programmer, Silver</div>
+        <div class="cert-org">Oracle</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge cert-badge--aws">AWS</div>
+      <div class="cert-info">
+        <div class="cert-name">AWS Certified Cloud Practitioner</div>
+        <div class="cert-org">Amazon Web Services</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge cert-badge--ai">AI</div>
+      <div class="cert-info">
+        <div class="cert-name">G検定（ジェネラリスト検定）</div>
+        <div class="cert-org">日本ディープラーニング協会（JDLA）</div>
       </div>
     </div>
   </div>
