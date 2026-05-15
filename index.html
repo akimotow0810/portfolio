@@ -274,6 +274,13 @@
       radial-gradient(circle at 30% 30%, rgba(59,130,246,0.25) 0%, transparent 50%),
       radial-gradient(circle at 70% 70%, rgba(96,165,250,0.15) 0%, transparent 50%);
   }
+  .work-thumb--img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
   .work-thumb-label {
     position: relative;
     z-index: 1;
@@ -511,7 +518,9 @@
       </div>
     </article>
     <article class="work-card">
-      <div class="work-thumb"><span class="work-thumb-label">CASE 03</span></div>
+      <div class="work-thumb work-thumb--img">
+        <img src="images/work-hara-dodgers.jpg" alt="原ドジャース サイトスクリーンショット" loading="lazy">
+      </div>
       <div class="work-body">
         <span class="work-tag">YOUTH BASEBALL / MULTI-PAGE</span>
         <h3 class="work-title">少年野球チームHP作成</h3>
