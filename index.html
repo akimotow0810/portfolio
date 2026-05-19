@@ -7,568 +7,20 @@
 <meta name="description" content="Java開発・Web制作・プログラミング指導に対応するフリーランスエンジニア。官公庁向けサイト改修経験あり。小〜中規模の案件を丁寧にサポートします。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0d1117;
-    --bg-elev: #161b22;
-    --bg-elev-2: #1c2230;
-    --border: #2a313c;
-    --text: #e6edf3;
-    --text-sub: #9aa4b2;
-    --accent: #3b82f6;
-    --accent-hover: #2563eb;
-    --accent-soft: rgba(59, 130, 246, 0.12);
-    --max-width: 1100px;
-    --radius: 8px;
-    --transition: 0.25s ease;
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    margin: 0;
-    font-family: 'Noto Sans JP', system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    font-weight: 400;
-  }
-
-  a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
-
-  /* ===== Navbar ===== */
-  .navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 64px;
-    background: rgba(13, 17, 23, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    z-index: 100;
-    transition: background var(--transition);
-  }
-  .nav-inner {
-    max-width: var(--max-width);
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-logo {
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    font-size: 1.05rem;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .nav-links a {
-    font-size: 0.92rem;
-    color: var(--text-sub);
-    transition: color var(--transition);
-    position: relative;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: -6px;
-    width: 0; height: 2px;
-    background: var(--accent);
-    transition: width var(--transition);
-  }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text);
-    cursor: pointer;
-    padding: 8px;
-  }
-  .nav-toggle svg { width: 24px; height: 24px; }
-
-  /* ===== Sections ===== */
-  section {
-    padding: 96px 24px;
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0 0 10px;
-    letter-spacing: 0.02em;
-  }
-  .section-title .accent { color: var(--accent); }
-  .section-subtitle {
-    color: var(--text-sub);
-    margin: 0 0 48px;
-    font-size: 0.95rem;
-    letter-spacing: 0.04em;
-  }
-
-  /* ===== Hero ===== */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 96px 24px 64px;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    position: relative;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 20%; right: -10%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
-    z-index: -1;
-    pointer-events: none;
-  }
-  .hero-tag {
-    display: inline-block;
-    font-size: 0.82rem;
-    color: var(--accent);
-    background: var(--accent-soft);
-    padding: 6px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    margin-bottom: 24px;
-    letter-spacing: 0.08em;
-  }
-  .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1.15;
-    margin: 0 0 20px;
-    letter-spacing: 0.04em;
-  }
-  .hero h1 .name-accent {
-    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .hero-catch {
-    font-size: clamp(1.15rem, 2.4vw, 1.55rem);
-    color: var(--text);
-    font-weight: 700;
-    margin: 0 0 16px;
-    max-width: 720px;
-    line-height: 1.55;
-  }
-  .hero-sub {
-    font-size: clamp(0.9rem, 1.6vw, 1.05rem);
-    color: var(--text-sub);
-    margin: 0 0 32px;
-    max-width: 600px;
-    line-height: 1.85;
-  }
-  .hero-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 0 0 36px;
-  }
-  .hero-chip {
-    font-size: 0.8rem;
-    color: var(--text-sub);
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    padding: 5px 14px;
-    border-radius: 999px;
-    letter-spacing: 0.03em;
-  }
-  .cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 32px;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background var(--transition), transform var(--transition);
-    font-family: inherit;
-  }
-  .cta:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
-  }
-  .cta svg { width: 18px; height: 18px; }
-
-  /* ===== Skills ===== */
-  .skills-group-label {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--text-sub);
-    margin: 0 0 14px;
-    padding-left: 2px;
-  }
-  .skills-group + .skills-group-label {
-    margin-top: 36px;
-  }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 14px;
-  }
-  .skill-card {
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px 20px;
-    transition: border-color var(--transition), transform var(--transition);
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-  }
-  .skill-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
-  }
-  .skill-icon {
-    width: 36px; height: 36px;
-    border-radius: 6px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-weight: 700;
-    font-size: 0.9rem;
-    margin-top: 2px;
-  }
-  .skill-info { flex: 1; }
-  .skill-name {
-    font-weight: 600;
-    font-size: 0.98rem;
-    margin-bottom: 3px;
-  }
-  .skill-desc {
-    font-size: 0.78rem;
-    color: var(--text-sub);
-    line-height: 1.5;
-  }
-
-  /* ===== Certifications ===== */
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 14px;
-  }
-  .cert-card {
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px 20px;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    transition: border-color var(--transition), transform var(--transition);
-  }
-  .cert-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
-  }
-  .cert-badge {
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-weight: 900;
-    font-size: 0.75rem;
-    letter-spacing: 0.01em;
-    text-align: center;
-    line-height: 1.3;
-    margin-top: 1px;
-  }
-  .cert-badge--gold {
-    background: rgba(234, 179, 8, 0.12);
-    color: #ca8a04;
-  }
-  .cert-badge--aws {
-    background: rgba(249, 115, 22, 0.12);
-    color: #ea580c;
-  }
-  .cert-badge--ai {
-    background: rgba(168, 85, 247, 0.12);
-    color: #9333ea;
-  }
-  .cert-badge--strat {
-    background: rgba(20, 184, 166, 0.12);
-    color: #0d9488;
-  }
-  .cert-info { flex: 1; }
-  .cert-name {
-    font-weight: 700;
-    font-size: 0.95rem;
-    margin-bottom: 3px;
-    line-height: 1.4;
-  }
-  .cert-org {
-    font-size: 0.78rem;
-    color: var(--text-sub);
-  }
-
-  /* ===== Works ===== */
-  .works-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 24px;
-  }
-  .work-card {
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform var(--transition), border-color var(--transition);
-  }
-  .work-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
-  }
-  .work-thumb {
-    aspect-ratio: 16 / 9;
-    background: linear-gradient(135deg, #1c2230 0%, #2a313c 100%);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .work-thumb::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(59,130,246,0.25) 0%, transparent 50%),
-      radial-gradient(circle at 70% 70%, rgba(96,165,250,0.15) 0%, transparent 50%);
-  }
-  .work-thumb--img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    display: block;
-  }
-  .work-thumb-label {
-    position: relative;
-    z-index: 1;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    font-size: 0.9rem;
-    color: var(--text-sub);
-  }
-  .work-body {
-    padding: 22px 24px 24px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .work-tag {
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  .work-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin: 0 0 10px;
-  }
-  .work-desc {
-    color: var(--text-sub);
-    font-size: 0.88rem;
-    margin: 0 0 20px;
-    flex: 1;
-    line-height: 1.75;
-  }
-  .work-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--accent);
-    font-size: 0.88rem;
-    font-weight: 500;
-    align-self: flex-start;
-    padding: 8px 16px;
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    transition: background var(--transition), color var(--transition);
-  }
-  .work-link:hover {
-    background: var(--accent);
-    color: #fff;
-  }
-  .work-link--soon {
-    color: var(--text-sub);
-    border-color: var(--border);
-    pointer-events: none;
-    font-size: 0.82rem;
-  }
-
-  /* ===== About ===== */
-  .about-box {
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: var(--radius);
-    padding: 36px 40px;
-  }
-  .about-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-  .about-text {
-    font-size: 0.98rem;
-    line-height: 1.95;
-    color: var(--text);
-  }
-  .about-text p { margin: 0 0 16px; }
-  .about-text p:last-child { margin: 0; }
-  .about-meta { border-top: 1px solid var(--border); }
-  .about-meta-row {
-    display: flex;
-    gap: 16px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.88rem;
-    align-items: baseline;
-  }
-  .about-meta-key {
-    color: var(--text-sub);
-    min-width: 72px;
-    flex-shrink: 0;
-    font-size: 0.8rem;
-    letter-spacing: 0.03em;
-  }
-  .about-meta-val { color: var(--text); line-height: 1.6; }
-
-  /* ===== Contact ===== */
-  .contact-lead {
-    max-width: 560px;
-    color: var(--text-sub);
-    margin: -28px 0 36px;
-    font-size: 0.95rem;
-    line-height: 1.85;
-  }
-  .contact-form {
-    display: grid;
-    gap: 20px;
-    max-width: 640px;
-  }
-  .form-group label {
-    display: block;
-    font-size: 0.88rem;
-    margin-bottom: 8px;
-    color: var(--text-sub);
-    font-weight: 500;
-  }
-  .form-group label .required {
-    color: var(--accent);
-    margin-left: 4px;
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    background: var(--bg-elev);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 12px 14px;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 0.95rem;
-    transition: border-color var(--transition), background var(--transition);
-  }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    background: var(--bg-elev-2);
-  }
-  .form-group textarea { min-height: 140px; resize: vertical; }
-  .form-submit { justify-self: start; }
-  .form-status {
-    font-size: 0.9rem;
-    color: var(--accent);
-    min-height: 1.2em;
-  }
-
-  /* ===== Footer ===== */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 24px;
-    text-align: center;
-    color: var(--text-sub);
-    font-size: 0.85rem;
-  }
-
-  /* ===== Fade-in ===== */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width: 768px) {
-    section { padding: 72px 20px; }
-    .hero { padding: 96px 20px 48px; }
-    .nav-links {
-      position: fixed;
-      top: 64px; left: 0; right: 0;
-      flex-direction: column;
-      background: var(--bg-elev);
-      padding: 20px 24px;
-      gap: 18px;
-      border-bottom: 1px solid var(--border);
-      transform: translateY(-120%);
-      transition: transform var(--transition);
-    }
-    .nav-links.open { transform: translateY(0); }
-    .nav-toggle { display: block; }
-    .about-box { padding: 24px 22px; }
-    .about-inner { grid-template-columns: 1fr; gap: 28px; }
-    .hero-sub br { display: none; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
 </head>
 <body>
 
-<nav class="navbar">
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">AKIMOTO<span>.</span></a>
     <button class="nav-toggle" aria-label="メニュー" aria-expanded="false">
@@ -579,6 +31,8 @@
       <li><a href="#certs">Certs</a></li>
       <li><a href="#works">Works</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -586,7 +40,7 @@
 
 <header id="hero" class="hero">
   <div>
-    <span class="hero-tag">IT CONSULTANT & WEB DEVELOPER</span>
+    <span class="hero-tag">IT CONSULTANT &amp; WEB DEVELOPER</span>
     <h1><span class="name-accent">AKIMOTO</span></h1>
     <p class="hero-catch">Java・Web制作で、<br>あなたのビジネスを加速します。</p>
     <p class="hero-sub">官公庁から中小企業・地域の団体まで、規模を問わず丁寧に対応。<br>要件定義・設計・実装・納品まで一貫してお任せいただけます。</p>
@@ -607,7 +61,7 @@
   <p class="section-subtitle">対応できる技術・サービス</p>
 
   <p class="skills-group-label">技術スキル</p>
-  <div class="skills-grid skills-group">
+  <div class="skills-grid skills-group stagger">
     <div class="skill-card">
       <div class="skill-icon">JV</div>
       <div class="skill-info">
@@ -639,7 +93,7 @@
   </div>
 
   <p class="skills-group-label">提供サービス</p>
-  <div class="skills-grid skills-group">
+  <div class="skills-grid skills-group stagger">
     <div class="skill-card">
       <div class="skill-icon">&lt;/&gt;</div>
       <div class="skill-info">
@@ -667,7 +121,7 @@
 <section id="certs" class="reveal">
   <h2 class="section-title">Certifications<span class="accent">.</span></h2>
   <p class="section-subtitle">保有資格・認定</p>
-  <div class="certs-grid">
+  <div class="certs-grid stagger">
     <div class="cert-card">
       <div class="cert-badge cert-badge--strat">IT<br>ST</div>
       <div class="cert-info">
@@ -716,7 +170,7 @@
 <section id="works" class="reveal">
   <h2 class="section-title">Works<span class="accent">.</span></h2>
   <p class="section-subtitle">これまでの制作実績</p>
-  <div class="works-grid">
+  <div class="works-grid stagger">
     <article class="work-card">
       <div class="work-thumb work-thumb--img">
         <img src="images/work-arch-creative.jpg" alt="ARCH Creative Studio サイトスクリーンショット" loading="lazy">
@@ -758,34 +212,85 @@
   <p class="section-subtitle">私について</p>
   <div class="about-box">
     <div class="about-inner">
-      <div class="about-text">
-        <p>本業はITコンサルタント。エンジニアとしての実務経験を経て現在は上流工程を中心に活動しており、副業として平日終業後にWeb制作・Java開発を承っています。</p>
-        <p>技術の実装力だけでなく、要件整理・課題整理・提案といったコンサルタント視点でのサポートも得意です。「何を作るべきか」から一緒に考えることもできます。</p>
-        <p>「とりあえず相談したい」という段階からお気軽にどうぞ。丁寧なヒアリングを大切にしています。</p>
+      <div class="about-avatar">
+        <img src="images/profile.png" alt="AKIMOTO プロフィール画像">
       </div>
-      <div class="about-meta">
-        <div class="about-meta-row">
-          <span class="about-meta-key">稼働時間</span>
-          <span class="about-meta-val">平日 19:00〜23:00 ／ 土日 応相談</span>
+      <div class="about-right">
+        <div class="about-text">
+          <p>本業はITコンサルタント。エンジニアとしての実務経験を経て、現在は要件定義・設計などの上流工程を中心に活動しています。並行してWeb制作・Java開発のご相談も承っています。</p>
+          <p>技術の実装力だけでなく、要件整理・課題整理・提案といったコンサルタント視点でのサポートも得意です。「何を作るべきか」から一緒に考えることもできます。</p>
+          <p>「とりあえず相談したい」という段階からお気軽にどうぞ。丁寧なヒアリングを大切にしています。</p>
         </div>
-        <div class="about-meta-row">
-          <span class="about-meta-key">対応規模</span>
-          <span class="about-meta-val">小〜中規模プロジェクト</span>
-        </div>
-        <div class="about-meta-row">
-          <span class="about-meta-key">対応エリア</span>
-          <span class="about-meta-val">全国対応（フルリモート）</span>
-        </div>
-        <div class="about-meta-row">
-          <span class="about-meta-key">連絡手段</span>
-          <span class="about-meta-val">メール・各種チャットツール</span>
-        </div>
-        <div class="about-meta-row">
-          <span class="about-meta-key">得意領域</span>
-          <span class="about-meta-val">Java業務開発・コーポレートサイト・プログラミング教育</span>
+        <div class="about-meta">
+          <div class="about-meta-row">
+            <span class="about-meta-key">対応規模</span>
+            <span class="about-meta-val">小〜中規模プロジェクト</span>
+          </div>
+          <div class="about-meta-row">
+            <span class="about-meta-key">対応エリア</span>
+            <span class="about-meta-val">全国対応（フルリモート）</span>
+          </div>
+          <div class="about-meta-row">
+            <span class="about-meta-key">連絡手段</span>
+            <span class="about-meta-val">メール・各種チャットツール</span>
+          </div>
+          <div class="about-meta-row">
+            <span class="about-meta-key">得意領域</span>
+            <span class="about-meta-val">Java業務開発・コーポレートサイト・プログラミング教育</span>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="process" class="reveal">
+  <h2 class="section-title">Process<span class="accent">.</span></h2>
+  <p class="section-subtitle">ご依頼から納品までの流れ</p>
+  <div class="process-grid stagger">
+    <div class="process-card">
+      <h3 class="process-title">お問い合わせ・ヒアリング</h3>
+      <p class="process-desc">フォームからご連絡ください。ご要望・課題・ご予算感などを丁寧にお伺いします。</p>
+    </div>
+    <div class="process-card">
+      <h3 class="process-title">お見積もり・ご提案</h3>
+      <p class="process-desc">ヒアリング内容をもとに、最適な構成・スケジュール・お見積もりをご提示します。</p>
+    </div>
+    <div class="process-card">
+      <h3 class="process-title">設計・制作</h3>
+      <p class="process-desc">ワイヤーフレーム・デザイン確認を経て、レスポンシブ／SEOに配慮した実装を進めます。</p>
+    </div>
+    <div class="process-card">
+      <h3 class="process-title">ご確認・納品</h3>
+      <p class="process-desc">テスト環境でご確認いただいた後、本番反映・公開・運用引き継ぎまでサポートします。</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="reveal">
+  <h2 class="section-title">FAQ<span class="accent">.</span></h2>
+  <p class="section-subtitle">よくあるご質問</p>
+  <div class="faq-list stagger">
+    <details class="faq">
+      <summary>制作費用はどのくらいですか？</summary>
+      <div class="faq-body">サイトの規模やページ数、機能要件によって異なります。LP・コーポレートサイトの参考価格をご案内できますので、まずはご相談ください。</div>
+    </details>
+    <details class="faq">
+      <summary>納期の目安はどのくらいですか？</summary>
+      <div class="faq-body">小〜中規模のサイトであれば、ヒアリング完了からおよそ4〜8週間が目安です。お急ぎの場合もご相談ください。</div>
+    </details>
+    <details class="faq">
+      <summary>デザインだけ・実装だけの依頼も可能ですか？</summary>
+      <div class="faq-body">はい、デザインカンプからの実装、既存サイトの部分改修など部分的なご依頼にも対応しています。</div>
+    </details>
+    <details class="faq">
+      <summary>公開後の保守・運用も依頼できますか？</summary>
+      <div class="faq-body">軽微な更新・保守、機能追加のご相談も承ります。月額の保守契約・スポット対応のどちらにも対応可能です。</div>
+    </details>
+    <details class="faq">
+      <summary>対応エリアはどこですか？</summary>
+      <div class="faq-body">全国対応・フルリモートで進めています。打ち合わせはZoom／Google Meet／各種チャットツールに対応しています。</div>
+    </details>
   </div>
 </section>
 
@@ -823,60 +328,9 @@
   © 2026 AKIMOTO. All Rights Reserved.
 </footer>
 
-<script>
-  const toggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  toggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
-  });
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-  const submitBtn = form.querySelector('button[type="submit"]');
-  if (new URLSearchParams(window.location.search).get('sent') === '1') {
-    status.style.color = '';
-    status.textContent = '✓ お問い合わせを送信しました。ありがとうございます。';
-    history.replaceState({}, '', window.location.pathname + window.location.hash);
-  }
-
-  form.addEventListener('submit', (e) => {
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
-    if (!name || !email || !message) {
-      e.preventDefault();
-      status.textContent = '※ すべての項目を入力してください。';
-      status.style.color = '#f87171';
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      e.preventDefault();
-      status.textContent = '※ 正しいメールアドレスを入力してください。';
-      status.style.color = '#f87171';
-      return;
-    }
-    status.style.color = '';
-    status.textContent = '送信中...';
-    submitBtn.disabled = true;
-  });
-</script>
+<button class="to-top" id="toTop" aria-label="トップへ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
 
 </body>
 </html>
