@@ -13,12 +13,20 @@
 </head>
 <body>
 
-<div class="scroll-progress" id="scrollProgress"></div>
-<div class="bg-blobs" aria-hidden="true">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
+<!-- Preloader -->
+<div id="preloader" aria-hidden="true">
+  <div class="pl-inner">
+    <div class="pl-logo">A<span>.</span></div>
+    <div class="pl-bar"><div class="pl-fill"></div></div>
+    <p class="pl-text">Loading</p>
+  </div>
 </div>
+
+<!-- Custom cursor -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
@@ -33,265 +41,496 @@
       <li><a href="#about">About</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
   </div>
 </nav>
 
-<header id="hero" class="hero">
-  <div>
+<section id="hero" class="hero-section">
+<header class="hero">
+  <div class="hero-bg-blob" aria-hidden="true"></div>
+
+  <div class="hero-content">
     <span class="hero-tag">IT CONSULTANT &amp; WEB DEVELOPER</span>
-    <h1><span class="name-accent">AKIMOTO</span></h1>
-    <p class="hero-catch">Java・Web制作で、<br>あなたのビジネスを加速します。</p>
+    <h1><span class="name-accent">AKIMOTO</span><span class="name-dot">.</span></h1>
+    <p class="hero-catch">Java・Web制作で、<br>ビジネスを加速します。</p>
     <p class="hero-sub">官公庁から中小企業・地域の団体まで、規模を問わず丁寧に対応。<br>要件定義・設計・実装・納品まで一貫してお任せいただけます。</p>
-    <div class="hero-chips">
-      <span class="hero-chip">✓ 官公庁サイト改修実績あり</span>
-      <span class="hero-chip">✓ Java / Web制作 フルスタック対応</span>
-      <span class="hero-chip">✓ レスポンシブ・SEO対応</span>
+    <div class="hero-ctas">
+      <a href="#works" class="cta">
+        実績を見る
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contact" class="cta cta--outline">お問い合わせ</a>
     </div>
-    <a href="#contact" class="cta">
-      まずは相談してみる
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <span class="hero-stat-num" data-target="3">0</span><span class="stat-plus">年</span>
+        <span class="hero-stat-label">開発実務経験</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-num" data-target="10">0</span><span class="stat-plus">+</span>
+        <span class="hero-stat-label">制作実績</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-num" data-target="6">0</span>
+        <span class="hero-stat-label">保有資格</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <!-- Browser Mockup -->
+    <div class="hero-mockup">
+      <div class="mockup-bar">
+        <span class="mockup-dot r"></span>
+        <span class="mockup-dot y"></span>
+        <span class="mockup-dot g"></span>
+        <div class="mockup-url">akimotow0810.github.io/lia-website</div>
+      </div>
+      <div class="mockup-screen">
+        <img src="https://storage.googleapis.com/studio-design-asset-files/projects/7kad3Rbzq3/s-5200x2925_v-frms_webp_e30ff65c-43ce-48e1-8f8a-70b7c3743ccb_middle.webp" alt="制作実績サイト" loading="eager">
+      </div>
+    </div>
+    <!-- Floating badges -->
+    <div class="hero-badge badge-1">
+      <span class="badge-icon">🏆</span>
+      <div>
+        <div class="badge-title">ITストラテジスト</div>
+        <div class="badge-sub">IPA 最高位資格</div>
+      </div>
+    </div>
+    <div class="hero-badge badge-2">
+      <div class="badge-live"></div>
+      <div>
+        <div class="badge-title">フルリモート対応</div>
+        <div class="badge-sub">全国どこでも OK</div>
+      </div>
+    </div>
+    <div class="hero-badge badge-3">
+      <span class="badge-icon">⚡</span>
+      <div>
+        <div class="badge-title">Java Gold 保有</div>
+        <div class="badge-sub">Oracle 認定</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator" aria-hidden="true">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
   </div>
 </header>
+</section>
 
-<section id="skills" class="reveal">
-  <h2 class="section-title">Skills<span class="accent">.</span></h2>
-  <p class="section-subtitle">対応できる技術・サービス</p>
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-inner">
+      <span>Java</span><span class="dot">◆</span>
+      <span>HTML / CSS</span><span class="dot">◆</span>
+      <span>JavaScript</span><span class="dot">◆</span>
+      <span>Web制作</span><span class="dot">◆</span>
+      <span>ITコンサルタント</span><span class="dot">◆</span>
+      <span>AWS</span><span class="dot">◆</span>
+      <span>プログラミング指導</span><span class="dot">◆</span>
+      <span>レスポンシブデザイン</span><span class="dot">◆</span>
+      <span>SEO対応</span><span class="dot">◆</span>
+      <span>官公庁サイト改修</span><span class="dot">◆</span>
+      <span>Java</span><span class="dot">◆</span>
+      <span>HTML / CSS</span><span class="dot">◆</span>
+      <span>JavaScript</span><span class="dot">◆</span>
+      <span>Web制作</span><span class="dot">◆</span>
+      <span>ITコンサルタント</span><span class="dot">◆</span>
+      <span>AWS</span><span class="dot">◆</span>
+      <span>プログラミング指導</span><span class="dot">◆</span>
+      <span>レスポンシブデザイン</span><span class="dot">◆</span>
+      <span>SEO対応</span><span class="dot">◆</span>
+      <span>官公庁サイト改修</span><span class="dot">◆</span>
+    </div>
+  </div>
+</div>
+
+<section id="skills" class="reveal slide-up">
+  <div class="section-heading">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Skills<span class="accent">.</span></h2>
+    <p class="section-subtitle">対応できる技術・サービス</p>
+  </div>
 
   <p class="skills-group-label">技術スキル</p>
-  <div class="skills-grid skills-group stagger">
+  <div class="skills-grid stagger">
     <div class="skill-card">
-      <div class="skill-icon">JV</div>
+      <div class="skill-icon sk--java"><span>JV</span></div>
       <div class="skill-info">
         <div class="skill-name">Java</div>
         <div class="skill-desc">業務システム・自動化ツール・バックエンド開発</div>
       </div>
+      <span class="skill-exp-tag">3年+</span>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">H5</div>
+      <div class="skill-icon sk--html"><span>H5</span></div>
       <div class="skill-info">
-        <div class="skill-name">HTML</div>
-        <div class="skill-desc">セマンティックなマークアップ・アクセシビリティ対応</div>
+        <div class="skill-name">HTML / CSS</div>
+        <div class="skill-desc">セマンティックなマークアップ・レスポンシブ対応</div>
       </div>
+      <span class="skill-exp-tag">5年+</span>
     </div>
     <div class="skill-card">
-      <div class="skill-icon">C3</div>
-      <div class="skill-info">
-        <div class="skill-name">CSS</div>
-        <div class="skill-desc">レスポンシブデザイン・アニメーション実装</div>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon">JS</div>
+      <div class="skill-icon sk--js"><span>JS</span></div>
       <div class="skill-info">
         <div class="skill-name">JavaScript</div>
         <div class="skill-desc">インタラクティブなUI・フォーム処理・API連携</div>
       </div>
+      <span class="skill-exp-tag">5年+</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon sk--cloud"><span>AWS</span></div>
+      <div class="skill-info">
+        <div class="skill-name">AWS / クラウド</div>
+        <div class="skill-desc">EC2・S3・Route53 など基本サービスの構築・運用</div>
+      </div>
+      <span class="skill-exp-tag">2年+</span>
     </div>
   </div>
 
-  <p class="skills-group-label">提供サービス</p>
-  <div class="skills-grid skills-group stagger">
-    <div class="skill-card">
-      <div class="skill-icon">&lt;/&gt;</div>
-      <div class="skill-info">
-        <div class="skill-name">Web制作</div>
-        <div class="skill-desc">コーポレートサイト・LP・チームHPなど小〜中規模に対応</div>
+  <p class="skills-group-label" style="margin-top:44px">提供サービス</p>
+  <div class="services-list stagger">
+    <div class="service-item">
+      <div class="service-item-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       </div>
+      <div class="service-item-body">
+        <h3 class="service-item-name">Web 制作</h3>
+        <p class="service-item-desc">コーポレートサイト・LP・チームHPなど小〜中規模に対応。デザインから実装・公開まで一貫して担います。</p>
+      </div>
+      <span class="service-item-tag">Design → Dev</span>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">📘</div>
-      <div class="skill-info">
-        <div class="skill-name">プログラミング指導</div>
-        <div class="skill-desc">初心者〜中級者向けの個別レッスン・コードレビュー</div>
+    <div class="service-item">
+      <div class="service-item-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
       </div>
+      <div class="service-item-body">
+        <h3 class="service-item-name">プログラミング指導</h3>
+        <p class="service-item-desc">初心者〜中級者向けの個別レッスン・コードレビュー。Java・HTML/CSS・JS に幅広く対応。</p>
+      </div>
+      <span class="service-item-tag">1on1 Lesson</span>
     </div>
-    <div class="skill-card">
-      <div class="skill-icon">🏛</div>
-      <div class="skill-info">
-        <div class="skill-name">官公庁向けサイト改修</div>
-        <div class="skill-desc">JIS X 8341準拠・既存システムとの整合性を保った改修対応</div>
+    <div class="service-item">
+      <div class="service-item-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </div>
+      <div class="service-item-body">
+        <h3 class="service-item-name">官公庁向けサイト改修</h3>
+        <p class="service-item-desc">JIS X 8341 準拠・既存システムとの整合性を保った改修対応。アクセシビリティ向上に実績あり。</p>
+      </div>
+      <span class="service-item-tag">Accessibility</span>
     </div>
   </div>
 </section>
 
-<section id="certs" class="reveal">
-  <h2 class="section-title">Certifications<span class="accent">.</span></h2>
-  <p class="section-subtitle">保有資格・認定</p>
-  <div class="certs-grid stagger">
-    <div class="cert-card">
-      <div class="cert-badge cert-badge--strat">IT<br>ST</div>
-      <div class="cert-info">
-        <div class="cert-name">ITストラテジスト</div>
-        <div class="cert-org">IPA 情報処理推進機構</div>
-      </div>
+<section id="certs" class="reveal slide-left">
+  <div class="section-heading">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Certifications<span class="accent">.</span></h2>
+    <p class="section-subtitle">保有資格・認定</p>
+  </div>
+
+  <!-- ITストラテジスト featured card -->
+  <div class="cert-featured stagger">
+    <div class="cert-featured-left">
+      <span class="cert-tier-pill">IPA 最高難易度</span>
+      <div class="cert-featured-badge">IT<br>ST</div>
     </div>
+    <div class="cert-featured-right">
+      <p class="cert-featured-org">情報処理推進機構（IPA）</p>
+      <h3 class="cert-featured-name">ITストラテジスト</h3>
+      <p class="cert-featured-desc">IT国家資格の最上位区分。経営戦略・ITガバナンス・情報化戦略立案を担うレベルの認定。合格率は約14%。</p>
+    </div>
+    <div class="cert-featured-star" aria-hidden="true">★</div>
+  </div>
+
+  <!-- Other certs -->
+  <div class="certs-grid stagger">
     <div class="cert-card">
       <div class="cert-badge">AP</div>
       <div class="cert-info">
+        <div class="cert-tier">IPA 応用</div>
         <div class="cert-name">応用情報技術者</div>
-        <div class="cert-org">IPA 情報処理推進機構</div>
+        <div class="cert-org">情報処理推進機構</div>
       </div>
     </div>
     <div class="cert-card">
       <div class="cert-badge cert-badge--gold">Gold</div>
       <div class="cert-info">
-        <div class="cert-name">Oracle Certified Java Programmer, Gold</div>
+        <div class="cert-tier">Oracle 認定</div>
+        <div class="cert-name">Java Programmer, Gold</div>
         <div class="cert-org">Oracle</div>
       </div>
     </div>
     <div class="cert-card">
       <div class="cert-badge">Slvr</div>
       <div class="cert-info">
-        <div class="cert-name">Oracle Certified Java Programmer, Silver</div>
+        <div class="cert-tier">Oracle 認定</div>
+        <div class="cert-name">Java Programmer, Silver</div>
         <div class="cert-org">Oracle</div>
       </div>
     </div>
     <div class="cert-card">
       <div class="cert-badge cert-badge--aws">AWS</div>
       <div class="cert-info">
-        <div class="cert-name">AWS Certified Cloud Practitioner</div>
+        <div class="cert-tier">Amazon 認定</div>
+        <div class="cert-name">Cloud Practitioner</div>
         <div class="cert-org">Amazon Web Services</div>
       </div>
     </div>
     <div class="cert-card">
       <div class="cert-badge cert-badge--ai">AI</div>
       <div class="cert-info">
-        <div class="cert-name">G検定（ジェネラリスト検定）</div>
-        <div class="cert-org">日本ディープラーニング協会（JDLA）</div>
+        <div class="cert-tier">JDLA 認定</div>
+        <div class="cert-name">G検定（ジェネラリスト）</div>
+        <div class="cert-org">日本ディープラーニング協会</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="works" class="reveal">
-  <h2 class="section-title">Works<span class="accent">.</span></h2>
-  <p class="section-subtitle">これまでの制作実績</p>
-  <div class="works-grid stagger">
-    <article class="work-card">
-      <div class="work-thumb work-thumb--img">
-        <img src="https://storage.googleapis.com/studio-design-asset-files/projects/7kad3Rbzq3/s-5200x2925_v-frms_webp_e30ff65c-43ce-48e1-8f8a-70b7c3743ccb_middle.webp" alt="株式会社LiA コーポレートサイトスクリーンショット" loading="lazy">
-      </div>
-      <div class="work-body">
-        <span class="work-tag">CORPORATE SITE</span>
-        <h3 class="work-title">求人広告代理店 コーポレートサイト制作</h3>
-        <p class="work-desc">【サンプル制作】東京・渋谷の求人広告代理店を想定したコーポレートサイトのデモ。GSAPによるスクロールアニメーション・9分割フォトグリッド（1枚の写真をモザイク状に分割してクロスフェード）・透明ヘッダー・レスポンシブ対応など、インタラクティブで本格的なコーポレートサイトをどう実装できるかを示したポートフォリオ作品です。</p>
-        <a href="https://akimotow0810.github.io/lia-website/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
-      </div>
-    </article>
-    <article class="work-card">
-      <div class="work-thumb work-thumb--img">
-        <img src="images/work-arch-creative.jpg" alt="ARCH Creative Studio サイトスクリーンショット" loading="lazy">
-      </div>
-      <div class="work-body">
-        <span class="work-tag">CORPORATE SITE</span>
-        <h3 class="work-title">クリエイティブ会社 コーポレートサイト制作</h3>
-        <p class="work-desc">【サンプル制作】デザイン・ブランディング会社を想定したコーポレートサイトのデモ。グラスモーフィズム・フルスクリーン背景写真・スクロールアニメーションなど、表現力の高いコーポレートサイトをどう実装できるかを示したポートフォリオ作品です。</p>
-        <a href="https://akimotow0810.github.io/arch-creative/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
-      </div>
-    </article>
-    <article class="work-card">
-      <div class="work-thumb work-thumb--img">
-        <img src="images/work-rise-academy.jpg" alt="RISE ACADEMY サイトスクリーンショット" loading="lazy">
-      </div>
-      <div class="work-body">
-        <span class="work-tag">LANDING PAGE</span>
-        <h3 class="work-title">プログラミングスクール LP制作</h3>
-        <p class="work-desc">【サンプル制作】Javaエンジニア養成スクールを想定したLPのデモサイト。受講生の声・料金プラン・FAQ・CTAなど、コンバージョンを意識したLP構成をどう実装できるかを示すポートフォリオ作品です。</p>
-        <a href="https://akimotow0810.github.io/rise-academy/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
-      </div>
-    </article>
-    <article class="work-card">
-      <div class="work-thumb work-thumb--img">
-        <img src="images/work-hara-dodgers.jpg" alt="原ドジャース サイトスクリーンショット" loading="lazy">
-      </div>
-      <div class="work-body">
-        <span class="work-tag">YOUTH BASEBALL / MULTI-PAGE</span>
-        <h3 class="work-title">少年野球チーム 公式サイト制作</h3>
-        <p class="work-desc">【サンプル制作】少年野球チームを想定した公式サイトのデモ。チーム紹介・メンバー・スケジュール・ギャラリーなど複数ページで構成し、Supabaseを活用したデータ管理機能の実装例も含むポートフォリオ作品です。</p>
-        <a href="https://akimotow0810.github.io/hara-dodgers/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
-      </div>
-    </article>
-    <article class="work-card">
-      <div class="work-thumb" style="background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%); display:flex; align-items:center; justify-content:center; min-height:200px;">
-        <span style="font-size:3rem;">📋</span>
-      </div>
-      <div class="work-body">
-        <span class="work-tag">WEB APP / FULL-STACK</span>
-        <h3 class="work-title">採用管理システム開発</h3>
-        <p class="work-desc">Next.js 16・Notion API・NextAuth・Resendを活用した採用管理Webアプリ。Googleフォームからの応募を自動でNotionに取り込み、書類選考〜内定まで一気通貫で管理。選考結果の記録・候補者へのメール送信・内定通知書／労働条件通知書のPDF自動生成・複数管理者対応・メール送信履歴管理などを実装。</p>
-        <a href="https://recruitment-bfv6a7c8m-akimoto-s-projects.vercel.app/login" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
-      </div>
-    </article>
+<section id="works" class="reveal slide-up">
+  <div class="works-top">
+    <div class="section-heading">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Works<span class="accent">.</span></h2>
+      <p class="section-subtitle">これまでの制作実績</p>
+    </div>
+    <div class="works-arrows">
+      <button class="works-arrow works-prev" aria-label="前へ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="works-arrow works-next" aria-label="次へ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
   </div>
+  <div class="works-carousel-wrap">
+    <div class="works-carousel stagger" id="worksCarousel">
+      <article class="work-card">
+        <div class="work-thumb work-thumb--img">
+          <img src="https://storage.googleapis.com/studio-design-asset-files/projects/7kad3Rbzq3/s-5200x2925_v-frms_webp_e30ff65c-43ce-48e1-8f8a-70b7c3743ccb_middle.webp" alt="株式会社LiA コーポレートサイト" loading="lazy">
+        </div>
+        <div class="work-body">
+          <span class="work-tag">CORPORATE SITE</span>
+          <h3 class="work-title">求人広告代理店 コーポレートサイト制作</h3>
+          <p class="work-desc">GSAPアニメーション・9分割フォトグリッド・透明ヘッダーなど、インタラクティブで本格的なコーポレートサイト。</p>
+          <a href="https://akimotow0810.github.io/lia-website/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="work-thumb work-thumb--img">
+          <img src="images/work-arch-creative.jpg" alt="ARCH Creative Studio" loading="lazy">
+        </div>
+        <div class="work-body">
+          <span class="work-tag">CORPORATE SITE</span>
+          <h3 class="work-title">クリエイティブ会社 コーポレートサイト制作</h3>
+          <p class="work-desc">グラスモーフィズム・フルスクリーン背景写真・スクロールアニメーションで表現力の高いサイト。</p>
+          <a href="https://akimotow0810.github.io/arch-creative/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="work-thumb work-thumb--img">
+          <img src="images/work-rise-academy.jpg" alt="RISE ACADEMY" loading="lazy">
+        </div>
+        <div class="work-body">
+          <span class="work-tag">LANDING PAGE</span>
+          <h3 class="work-title">プログラミングスクール LP制作</h3>
+          <p class="work-desc">受講生の声・料金プラン・FAQ・CTAなど、コンバージョンを意識したLP構成。</p>
+          <a href="https://akimotow0810.github.io/rise-academy/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="work-thumb work-thumb--img">
+          <img src="images/work-hara-dodgers.jpg" alt="原ドジャース" loading="lazy">
+        </div>
+        <div class="work-body">
+          <span class="work-tag">MULTI-PAGE SITE</span>
+          <h3 class="work-title">少年野球チーム 公式サイト制作</h3>
+          <p class="work-desc">複数ページ構成＋Supabaseを活用したデータ管理機能の実装。</p>
+          <a href="https://akimotow0810.github.io/hara-dodgers/" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="work-thumb" style="background: linear-gradient(135deg, #1e40af 0%, #4f46e5 100%); display:flex; align-items:center; justify-content:center; min-height:220px;">
+          <span style="font-size:3.5rem;">📋</span>
+        </div>
+        <div class="work-body">
+          <span class="work-tag">WEB APP / FULL-STACK</span>
+          <h3 class="work-title">採用管理システム開発</h3>
+          <p class="work-desc">Next.js・Notion API・NextAuth・Resendを活用した採用管理Webアプリ。書類選考〜内定まで一元管理。</p>
+          <a href="https://recruitment-bfv6a7c8m-akimoto-s-projects.vercel.app/login" target="_blank" rel="noopener" class="work-link">サイトを見る →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="works-dots" id="worksDots"></div>
 </section>
 
-<section id="about" class="reveal">
-  <h2 class="section-title">About<span class="accent">.</span></h2>
-  <p class="section-subtitle">私について</p>
-  <div class="about-box">
-    <div class="about-inner">
+<section id="about" class="reveal slide-right">
+  <div class="section-heading">
+    <span class="section-num">04</span>
+    <h2 class="section-title">About<span class="accent">.</span></h2>
+    <p class="section-subtitle">私について</p>
+  </div>
+
+  <!-- Large catchphrase -->
+  <p class="about-catch">「上流」から「実装」まで、<br>一貫して担える<br>エンジニア。</p>
+
+  <div class="about-layout">
+    <!-- Left column: avatar + stats + tools -->
+    <div class="about-left">
       <div class="about-avatar">
         <img src="images/profile.png" alt="AKIMOTO プロフィール画像">
       </div>
-      <div class="about-right">
-        <div class="about-text">
-          <p>本業はITコンサルタント。エンジニアとしての実務経験を経て、現在は要件定義・設計などの上流工程を中心に活動しています。並行してWeb制作・Java開発のご相談も承っています。</p>
-          <p>技術の実装力だけでなく、要件整理・課題整理・提案といったコンサルタント視点でのサポートも得意です。「何を作るべきか」から一緒に考えることもできます。</p>
-          <p>「とりあえず相談したい」という段階からお気軽にどうぞ。丁寧なヒアリングを大切にしています。</p>
+      <div class="about-stats-card">
+        <div class="about-stat-item">
+          <span class="about-stat-num">3<span class="about-stat-unit">年</span></span>
+          <span class="about-stat-label">開発実務経験</span>
         </div>
-        <div class="about-meta">
-          <div class="about-meta-row">
-            <span class="about-meta-key">対応規模</span>
-            <span class="about-meta-val">小〜中規模プロジェクト</span>
+        <div class="about-stat-sep"></div>
+        <div class="about-stat-item">
+          <span class="about-stat-num">10<span class="about-stat-unit">+</span></span>
+          <span class="about-stat-label">制作実績</span>
+        </div>
+        <div class="about-stat-sep"></div>
+        <div class="about-stat-item">
+          <span class="about-stat-num">6</span>
+          <span class="about-stat-label">保有資格</span>
+        </div>
+      </div>
+      <div class="about-tools">
+        <p class="about-tools-label">使用技術 / ツール</p>
+        <div class="about-tools-list">
+          <span class="tool-chip">Java</span>
+          <span class="tool-chip">Spring Boot</span>
+          <span class="tool-chip">HTML / CSS</span>
+          <span class="tool-chip">JavaScript</span>
+          <span class="tool-chip">Git / GitHub</span>
+          <span class="tool-chip">Claude AI</span>
+          <span class="tool-chip">Figma</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column: intro + timeline + meta -->
+    <div class="about-right">
+      <p class="about-intro">はじめまして。<br>ITコンサルタント &amp; フリーランスエンジニアの <strong>AKIMOTO</strong> です。</p>
+
+      <div class="about-timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-label">キャリアのスタート</span>
+            <h3 class="timeline-title">自動車ディーラー 営業職</h3>
+            <p class="timeline-desc">新卒で自動車販売会社へ入社。顧客折衝・提案営業を通じてコミュニケーション力と課題ヒアリングの基礎を培いました。</p>
           </div>
-          <div class="about-meta-row">
-            <span class="about-meta-key">対応エリア</span>
-            <span class="about-meta-val">全国対応（フルリモート）</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-label">転職</span>
+            <h3 class="timeline-title">SE（システムエンジニア）</h3>
+            <p class="timeline-desc">IT業界へ転向し、約3年間 Java を中心とした業務システム開発に従事。設計・実装・テストを一貫して担当しました。</p>
           </div>
-          <div class="about-meta-row">
-            <span class="about-meta-key">連絡手段</span>
-            <span class="about-meta-val">メール・各種チャットツール</span>
+        </div>
+        <div class="timeline-item timeline-item--active">
+          <div class="timeline-dot"></div>
+          <div class="timeline-body">
+            <span class="timeline-label">現在</span>
+            <h3 class="timeline-title">ITコンサルタント &amp; フリーランスエンジニア</h3>
+            <p class="timeline-desc">上流工程（要件定義・設計）を軸に活動しながら、Web制作・Java開発・プログラミング指導も並行して承っています。単なる実装だけでなく「何を作るべきか」から一緒に考えます。</p>
           </div>
-          <div class="about-meta-row">
-            <span class="about-meta-key">得意領域</span>
-            <span class="about-meta-val">Java業務開発・コーポレートサイト・プログラミング教育</span>
-          </div>
+        </div>
+      </div>
+
+      <div class="about-meta">
+        <div class="about-meta-row">
+          <span class="about-meta-key">対応規模</span>
+          <span class="about-meta-val">小〜中規模プロジェクト</span>
+        </div>
+        <div class="about-meta-row">
+          <span class="about-meta-key">対応エリア</span>
+          <span class="about-meta-val">全国対応（フルリモート）</span>
+        </div>
+        <div class="about-meta-row">
+          <span class="about-meta-key">連絡手段</span>
+          <span class="about-meta-val">メール・各種チャットツール</span>
+        </div>
+        <div class="about-meta-row">
+          <span class="about-meta-key">得意領域</span>
+          <span class="about-meta-val">Java 業務開発・コーポレートサイト・プログラミング教育</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="process" class="reveal">
-  <h2 class="section-title">Process<span class="accent">.</span></h2>
-  <p class="section-subtitle">ご依頼から納品までの流れ</p>
-  <div class="process-grid stagger">
-    <div class="process-card">
-      <h3 class="process-title">お問い合わせ・ヒアリング</h3>
-      <p class="process-desc">フォームからご連絡ください。ご要望・課題・ご予算感などを丁寧にお伺いします。</p>
+<section id="process" class="reveal slide-up">
+  <div class="process-inner">
+    <div class="process-header">
+      <span class="section-num">05</span>
+      <p class="process-eyebrow">PROCESS</p>
+      <h2 class="process-main-title">制作の流れ</h2>
+      <p class="process-lead">お問い合わせから納品まで、丁寧にサポートします。</p>
     </div>
-    <div class="process-card">
-      <h3 class="process-title">お見積もり・ご提案</h3>
-      <p class="process-desc">ヒアリング内容をもとに、最適な構成・スケジュール・お見積もりをご提示します。</p>
-    </div>
-    <div class="process-card">
-      <h3 class="process-title">設計・制作</h3>
-      <p class="process-desc">ワイヤーフレーム・デザイン確認を経て、レスポンシブ／SEOに配慮した実装を進めます。</p>
-    </div>
-    <div class="process-card">
-      <h3 class="process-title">ご確認・納品</h3>
-      <p class="process-desc">テスト環境でご確認いただいた後、本番反映・公開・運用引き継ぎまでサポートします。</p>
+    <div class="process-grid stagger">
+      <div class="process-step-card">
+        <div class="process-step-top">
+          <div class="process-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <span class="process-step-num">01</span>
+        </div>
+        <h3 class="process-step-title">ヒアリング・<br>お問い合わせ</h3>
+        <p class="process-step-desc">フォームからご連絡ください。ご要望・課題・予算感などを丁寧にお伺いし、最適なプランをご提案します。</p>
+      </div>
+      <div class="process-step-card">
+        <div class="process-step-top">
+          <div class="process-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <span class="process-step-num">02</span>
+        </div>
+        <h3 class="process-step-title">お見積もり・<br>ご提案</h3>
+        <p class="process-step-desc">ヒアリング内容をもとに、最適な構成・スケジュール・お見積もりをご提示。ご納得いただけるまで調整します。</p>
+      </div>
+      <div class="process-step-card">
+        <div class="process-step-top">
+          <div class="process-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <span class="process-step-num">03</span>
+        </div>
+        <h3 class="process-step-title">設計・制作</h3>
+        <p class="process-step-desc">ワイヤーフレーム・デザイン確認を経て、レスポンシブ・SEOに配慮した実装を進めます。進捗は都度共有します。</p>
+      </div>
+      <div class="process-step-card">
+        <div class="process-step-top">
+          <div class="process-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="process-step-num">04</span>
+        </div>
+        <h3 class="process-step-title">ご確認・納品</h3>
+        <p class="process-step-desc">テスト環境でご確認後、本番反映・公開・運用引き継ぎまでサポート。公開後のフォローも対応します。</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="faq" class="reveal">
-  <h2 class="section-title">FAQ<span class="accent">.</span></h2>
-  <p class="section-subtitle">よくあるご質問</p>
+<section id="faq" class="reveal slide-left">
+  <div class="section-heading">
+    <span class="section-num">06</span>
+    <h2 class="section-title">FAQ<span class="accent">.</span></h2>
+    <p class="section-subtitle">よくあるご質問</p>
+  </div>
   <div class="faq-list stagger">
     <details class="faq">
       <summary>制作費用はどのくらいですか？</summary>
@@ -334,9 +573,12 @@
   </div>
 </section>
 
-<section id="contact" class="reveal">
-  <h2 class="section-title">Contact<span class="accent">.</span></h2>
-  <p class="section-subtitle">お問い合わせ</p>
+<section id="contact" class="reveal slide-up">
+  <div class="section-heading">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Contact<span class="accent">.</span></h2>
+    <p class="section-subtitle">お問い合わせ</p>
+  </div>
   <p class="contact-lead">予算・納期・要件がまだ固まっていなくても大丈夫です。「こんなものを作りたい」という段階からご相談をお受けしています。通常2営業日以内にご返信します。</p>
   <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
     <input type="hidden" name="access_key" value="f305bb68-110e-4117-8c30-acd39aeafeaa">
