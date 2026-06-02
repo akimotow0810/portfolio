@@ -152,82 +152,50 @@ if (heroSection) {
   statsObserver.observe(heroSection);
 }
 
-// Works carousel
-const carousel = document.getElementById('worksCarousel');
-const prevBtn = document.querySelector('.works-prev');
-const nextBtn = document.querySelector('.works-next');
-const dotsContainer = document.getElementById('worksDots');
+// Works Modals
+const modalButtons = document.querySelectorAll('[data-modal]');
+const modals = document.querySelectorAll('.works-modal');
+const modalCloses = document.querySelectorAll('.modal-close');
 
-if (carousel && prevBtn && nextBtn) {
-  const cards = carousel.querySelectorAll('.work-card');
-  const cardCount = cards.length;
-
-  // Build dots
-  cards.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'works-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', `作品 ${i + 1}`);
-    dot.addEventListener('click', () => scrollToCard(i));
-    dotsContainer.appendChild(dot);
+modalButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modalId = btn.dataset.modal;
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
   });
-  const dots = dotsContainer.querySelectorAll('.works-dot');
+});
 
-  function getCardWidth() {
-    const card = cards[0];
-    if (!card) return 340;
-    const gap = parseInt(window.getComputedStyle(carousel).gap || '20', 10);
-    return card.offsetWidth + gap;
+const closeModal = (modal) => {
+  modal.classList.remove('active');
+  if (!document.querySelector('.works-modal.active')) {
+    document.body.style.overflow = '';
   }
+};
 
-  function getCurrentIndex() {
-    return Math.round(carousel.scrollLeft / getCardWidth());
+modalCloses.forEach(close => {
+  close.addEventListener('click', () => {
+    const modal = close.closest('.works-modal');
+    if (modal) closeModal(modal);
+  });
+});
+
+modals.forEach(modal => {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal(modal);
+    }
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const activeModal = document.querySelector('.works-modal.active');
+    if (activeModal) closeModal(activeModal);
   }
-
-  function scrollToCard(index) {
-    const clamped = Math.max(0, Math.min(index, cardCount - 1));
-    carousel.scrollTo({ left: clamped * getCardWidth(), behavior: 'smooth' });
-  }
-
-  function updateState() {
-    const idx = getCurrentIndex();
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    prevBtn.disabled = idx === 0;
-    nextBtn.disabled = idx >= cardCount - 1;
-  }
-
-  prevBtn.addEventListener('click', () => scrollToCard(getCurrentIndex() - 1));
-  nextBtn.addEventListener('click', () => scrollToCard(getCurrentIndex() + 1));
-  carousel.addEventListener('scroll', updateState, { passive: true });
-  updateState();
-
-  // Drag to scroll
-  let isDown = false, startX = 0, scrollLeft = 0;
-  carousel.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - carousel.offsetLeft;
-    scrollLeft = carousel.scrollLeft;
-    carousel.classList.add('dragging');
-    carousel.style.scrollBehavior = 'auto';
-  });
-  document.addEventListener('mouseup', () => {
-    if (!isDown) return;
-    isDown = false;
-    carousel.classList.remove('dragging');
-    carousel.style.scrollBehavior = 'smooth';
-    scrollToCard(getCurrentIndex());
-  });
-  carousel.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX);
-  });
-  carousel.addEventListener('mouseleave', () => {
-    if (!isDown) return;
-    isDown = false;
-    carousel.classList.remove('dragging');
-    carousel.style.scrollBehavior = 'smooth';
-  });
-}
+});
 
 // Contact form
 const form = document.getElementById('contactForm');
