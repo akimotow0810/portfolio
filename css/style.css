@@ -1452,8 +1452,17 @@ footer {
   .cert-featured { flex-direction: column; gap: 20px; padding: 24px; }
   .cert-featured-star { display: none; }
   /* Services list */
-  .service-item { flex-wrap: wrap; gap: 14px; }
-  .service-item-tag { margin-left: 62px; }
+  .service-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px 20px;
+  }
+  .service-item-tag {
+    margin-left: 0;
+    align-self: flex-start;
+    margin-top: 8px;
+  }
   /* Process: 1col on mobile */
   .process-grid { grid-template-columns: 1fr; }
   .process-inner { padding: 70px 20px; }
