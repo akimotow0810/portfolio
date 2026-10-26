@@ -315,6 +315,30 @@
         <div class="work-mockup-wrapper">
           <div class="mockup-laptop">
             <div class="laptop-screen">
+              <img src="images/work-ai-uranai.jpg" alt="PC表示" loading="lazy">
+            </div>
+            <div class="laptop-base"></div>
+          </div>
+          <div class="mockup-phone">
+            <div class="phone-screen">
+              <img src="images/work-ai-uranai.jpg" alt="スマホ表示" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="work-body">
+          <span class="work-tag-new">AI占いサービス LP</span>
+          <h4 class="work-title-new">LINE AI占い『星のヒント』サービスLP</h4>
+          <div class="work-actions">
+            <a href="https://akimotow0810.github.io/ai-uranai-lp/" target="_blank" rel="noopener" class="btn-site">実際のページはこちら</a>
+            <button class="btn-detail" data-modal="modal-ai-uranai">▼ 制作意図はこちら</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <div class="work-mockup-wrapper">
+          <div class="mockup-laptop">
+            <div class="laptop-screen">
               <img src="images/work-iwasaki-lp.jpg" alt="PC表示" loading="lazy">
             </div>
             <div class="laptop-base"></div>
@@ -544,6 +568,26 @@
 
 <!-- モーダルウィンドウのHTML群 -->
 <div class="works-modals">
+  <div class="works-modal" id="modal-ai-uranai" role="dialog" aria-modal="true" aria-labelledby="modal-ai-uranai-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="閉じる">&times;</button>
+      <h3 id="modal-ai-uranai-title">LINE AI占い『星のヒント』サービスLP</h3>
+      <p class="modal-subtitle">AI占い師『澪（みお）』 LINEミニサービス 紹介LP</p>
+      <div class="modal-body">
+        <p>LINE上で動くAI占いサービス『星のヒント』の紹介ランディングページです。企画・コピーライティング・デザイン・実装まで一貫して担当しました。AI占い師「澪（みお）」の世界観を、神秘的な夜空と水晶玉のビジュアルで表現しています。</p>
+        <h4>主な実装・工夫</h4>
+        <ul>
+          <li>Tailwind CSS によるダークテーマ×ゴールドの世界観構築とフルレスポンシブ対応</li>
+          <li>ヒーロー・占術紹介・料金プラン・FAQ・CTAまでを1ページで完結させる導線設計</li>
+          <li>「友だち追加 → LINEで無料鑑定」へ自然につなぐ複数CTA配置</li>
+          <li>サービス本体（FastAPI + Claude API + LIFFマイページ）と連携する紹介窓口として構築</li>
+        </ul>
+        <h4>使用技術・ツール</h4>
+        <p class="modal-tags">HTML5 / Tailwind CSS / JavaScript / FastAPI / Claude API / LIFF / GitHub Pages</p>
+      </div>
+    </div>
+  </div>
+
   <div class="works-modal" id="modal-iwasaki" role="dialog" aria-modal="true" aria-labelledby="modal-iwasaki-title">
     <div class="modal-content">
       <button class="modal-close" aria-label="閉じる">&times;</button>
